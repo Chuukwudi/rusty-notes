@@ -1,0 +1,13 @@
+name: Rust Notes
+services:
+  devcontainer:
+    container_name: rust-practice
+    build:
+      context: .
+      dockerfile: Dockerfile
+      platforms:
+        - "linux/amd64"
+    volumes:
+      - ..:/app/
+      - ~/.aws:/home/vscode/.aws # for awscli and aws-sdk-rust
+    tty: true
