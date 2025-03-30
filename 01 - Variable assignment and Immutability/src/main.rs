@@ -21,7 +21,7 @@ fn main() {
 
 
 
-    let topic = "04 - Other conditional statements (if let)";
+    let topic = "15 - Defining Structs";
     let folder_name = &topic[5..]
         .to_lowercase()
         .replace(" ", "_")
@@ -29,6 +29,6 @@ fn main() {
         .replace("(", "")
         .replace(")", "");
     println!("{}", folder_name);
-    let command = format!("cargo new \"{}\" --name {} --vcs none", topic, folder_name);
-    println!("{}", command);
+    let command = format!("cd .. && cargo new \"{}\" --name {} --vcs none", topic, folder_name);
+    println!("{}", command);    
 }
