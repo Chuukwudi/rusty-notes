@@ -21,7 +21,7 @@ fn main() {
 
 
 
-    let topic = "15 - Defining Structs";
+    let topic = "19 - String Manipulation";
     let folder_name = &topic[5..]
         .to_lowercase()
         .replace(" ", "_")
