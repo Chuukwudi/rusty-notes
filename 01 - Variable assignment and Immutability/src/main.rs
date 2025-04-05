@@ -1,4 +1,4 @@
-fn main() {
+fn main(){
     let message = "Name: Chukwudi, Weight: ";
     let weight = 190.0;
     
@@ -18,17 +18,4 @@ fn main() {
     let kilos = weight / 2.2;
     println!("{}{}", message, weight);
     println!("{}{}", message, kilos);
-
-
-
-    let topic = "19 - String Manipulation";
-    let folder_name = &topic[5..]
-        .to_lowercase()
-        .replace(" ", "_")
-        .replace("-", "_")
-        .replace("(", "")
-        .replace(")", "");
-    println!("{}", folder_name);
-    let command = format!("cd .. && cargo new \"{}\" --name {} --vcs none", topic, folder_name);
-    println!("{}", command);    
 }
