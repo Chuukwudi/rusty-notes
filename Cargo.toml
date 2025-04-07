@@ -27,4 +27,10 @@ members = [
     "23 - Defining an ENUM", 
     "24 - Using ENUM as a type", 
     "25 - The option Enumerator", 
-    "26 - Applied Enums", "27 - Vectors with Enums", "28 - Exhaustive matches", "29 - File Size Formatter"]
+    "26 - Applied Enums", 
+    "27 - Vectors with Enums", 
+    "28 - Exhaustive matches", 
+    "29 - File Size Formatter"
+    ]
+
+resolver = "2"

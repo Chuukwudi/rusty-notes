@@ -1,28 +1,52 @@
-enum FileSize {
-    Bytes(u64),
-    Kilobytes(f64),
-    Megabytes(f64),
-    Gigabytes(f64),
+use std::env;
+
+struct FileSize {
+    size: f64,
+    unit: String,
 }
+impl FileSize {
+    fn new(size: f64, unit: String) -> Self {
+        FileSize { size, unit }
+    }
 
-fn format_size(size: u64) -> String {
-    let filesize = match size {
-        0..=999 => FileSize::Bytes(size),
-        1000..=999_999 => FileSize::Kilobytes(size as f64 / 1000.0),
-        1_000_000..=999_999_999 => FileSize::Megabytes(size as f64 / 1_000_000.0),
-        _ => FileSize::Gigabytes(size as f64 / 1_000_000_000.0),
-    };
+    fn to_bytes(&self) -> f64 {
+        // Convert the size to bytes based on the unit
+        let size = match self.unit.as_str() {
+            "B" =>  self.size,
+            "KB" => self.size * 1000.0,
+            "MB" => self.size * 1_000_000.0,
+            "GB" => self.size * 1_000_000_000.0,
+            _ => panic!("Invalid unit"),
+        };
+        size
+    }
 
-    match filesize {
-        FileSize::Bytes(bytes) => format!("{} bytes", bytes),
-        FileSize::Kilobytes(kb) => format!("{:.2} KB", kb),
-        FileSize::Megabytes(mb) => format!("{:.2} MB", mb),
-        FileSize::Gigabytes(gb) => format!("{:.2} GB", gb),
+    fn format_bytes(&self) -> String {
+        // Convert the size to bytes based on the unit
+        let bytes = &self.to_bytes();
+        let kb = bytes / 1000.0;
+        let mb = kb / 1000.0;
+        let gb = mb / 1000.0;
+        
+        format!("Sizes {{ \"{} bytes\", \"{} kilobytes\", \"{} megabytes\", \"{} gigabytes\" }}", bytes, kb, mb, gb)
     }
 }
 
-
 fn main() {
-    let result = format_size(6888837399);
-    println!("{}", result)
-}
+    let args: Vec<String> = env::args().collect();
+    let size = &args[1];
+    let numeric_and_unit: Vec<&str> = size.split(" ").collect();
+    if numeric_and_unit.len() != 2 {
+        println!("Please provide a size in the format <number> <unit>");
+        return;
+    }
+    println!("File size: {:?}", numeric_and_unit);
+    let size = numeric_and_unit[0].parse::<f64>().unwrap();
+    let unit = numeric_and_unit[1].to_uppercase();
+    let file_size = FileSize::new(size, unit);
+    let bytes = file_size.to_bytes();
+    println!("File size in bytes: {}", bytes);
+    println!("{}", file_size.format_bytes());
+    }
+
+// cargo run -- "24 MB"
