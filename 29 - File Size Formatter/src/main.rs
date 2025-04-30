@@ -50,3 +50,4 @@ fn main() {
     }
 
 // cargo run -- "24 MB"
+// cargo new --lib "30 - Creating a library with cargo" --name creating_a_library_with_cargo --vcs none

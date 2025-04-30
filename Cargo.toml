@@ -30,7 +30,9 @@ members = [
     "26 - Applied Enums", 
     "27 - Vectors with Enums", 
     "28 - Exhaustive matches", 
-    "29 - File Size Formatter"
-    ]
+    "29 - File Size Formatter", 
+    "30 - Creating a library with cargo", 
+    "31 - Documenting your code"
+    , "32 - Using a Debugger"]
 
 resolver = "2"
